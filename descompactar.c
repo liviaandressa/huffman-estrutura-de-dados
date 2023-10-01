@@ -12,7 +12,7 @@ int descompact(FILE *compactar, char nome_arquivo_entrada[])
     FILE *descompactar;
 
     getchar();
-    printf("Enter the output file file:\n");
+    printf("Informe o arquivo de saída:\n");
     scanf("%[^\n]s", output_name);
 
     compactar = fopen(nome_arquivo_entrada, "rb"); // lê em binário / read binary
@@ -32,7 +32,7 @@ int descompact(FILE *compactar, char nome_arquivo_entrada[])
     print_byte(compactar, descompactar, root, t_arvore, t_trash, t_arquivo_descompactado);
     fclose(compactar);
     fclose(descompactar);
-    printf("DONE!\n");
+    printf("FEITO!\n");
     return 0;
 }
 

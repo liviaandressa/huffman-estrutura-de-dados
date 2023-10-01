@@ -15,23 +15,23 @@ FILE *compact(FILE *arquivo_original, char nome_arquivo[])
     arquivo_original = fopen(nome_arquivo, "rb"); // lê o arquivo original
     printf("Lendo arquivo original...\n");
     freq = save_freq(arquivo_original); // salva frequência em um array com a tabela ASCII
-    printf("FEITA!\n");
+    printf("FEITO!\n");
     rewind(arquivo_original); // Retorna a posição inicial do arquivo
 
     printf("Gerando fila de frequência...\n");
     frequency_enqueue(freq, queue); // Crie uma lista ordenada por frequência
-    printf("FEITA!\n");
+    printf("FEITO!\n");
 
     printf("Gerando árvore Huffman...\n");
     root = merge_nodes(queue); // Cria a árvore huffman
     generate_huffman_tree(root, 0, hash, huff_tree_path);
-    printf("FEITA!\n");
+    printf("FEITO!\n");
 
     printf("Criando arquivo compactado...\n");
     nome_arquivo = strtok(nome_arquivo, ".");
     nome_arquivo = strcat(nome_arquivo, ".huff");
     final_file = fopen(nome_arquivo, "wb");
-    printf("FEITA!\n");
+    printf("FEITO!\n");
 
     trash = trash_size(hash, freq);
     arvore = tree_size(root);
@@ -51,7 +51,7 @@ FILE *compact(FILE *arquivo_original, char nome_arquivo[])
     printf("Gravando arquivo compactado...\n");
 
     // troquei para fgetc
-    while (!fgetc(arquivo_original)) // Escreva todos os bytes no arquivo compactado  - lê bytes do arquivo_original até que o final do arquivo seja alcançado
+    while (!feof(arquivo_original)) // Escreva todos os bytes no arquivo compactado  - lê bytes do arquivo_original até que o final do arquivo seja alcançado
     {
         curr_byte = fgetc(arquivo_original); // lê um byte do arquivo_original e armazena
         int i;
@@ -69,7 +69,7 @@ FILE *compact(FILE *arquivo_original, char nome_arquivo[])
             }
         }
     }
-    printf("FEITA!\n");
+    printf("FEITO!\n");
 
     fclose(arquivo_original);
     fclose(final_file);
