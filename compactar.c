@@ -96,13 +96,13 @@ int generate_huffman_tree(node *root, int count, ht *ht, char string[]) // Recie
     if (root->left == NULL && root->right == NULL)
     {
         add_hash(ht, root->item, string, count); // Cria um hash que terá o caminho do byte compactado
-        else
-        {
-            string[count] = '0';
-            generate_huffman_tree(root->left, count + 1, ht, string);
-            string[count] = '1';
-            generate_huffman_tree(root->right, count + 1, ht, string);
-        }
+    }
+    else
+    {
+        string[count] = '0';
+        generate_huffman_tree(root->left, count + 1, ht, string);
+        string[count] = '1';
+        generate_huffman_tree(root->right, count + 1, ht, string);
     }
 }
 
